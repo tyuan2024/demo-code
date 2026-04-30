@@ -223,22 +223,11 @@ def load_clinical_features(labels_df: pd.DataFrame):
 
 
 def get_or_create_split():
-    """复用 v3 split；若不存在则新建"""
+    """8:1:1 分层划分；已有则复用"""
     split_path = os.path.join(OUT_MODELS, 'data_split_v4.json')
     if os.path.exists(split_path):
         with open(split_path) as f:
             return json.load(f)
-
-    # 尝试复用 v3
-    v3_path = os.path.join('/root/autodl-tmp/影像/habitat_project_v2/output_v2/models',
-                           'data_split_v3.json')
-    if os.path.exists(v3_path):
-        with open(v3_path) as f:
-            split = json.load(f)
-        os.makedirs(OUT_MODELS, exist_ok=True)
-        with open(split_path, 'w') as f:
-            json.dump(split, f)
-        return split
 
     labels_df = load_labels()
     ids_all = labels_df['case_id'].values

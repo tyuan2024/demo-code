@@ -85,8 +85,8 @@ CUTOFF_MONTHS = 24
 ID_COL        = '住院号'
 
 # ---- 数据划分 ----
-TEST_RATIO   = 0.20
-VAL_RATIO    = 0.15
+TEST_RATIO   = 0.10
+VAL_RATIO    = 0.10
 
 # ---- 建模 ----
 OPTUNA_N_TRIALS = 200
